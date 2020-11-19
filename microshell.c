@@ -9,12 +9,6 @@
 #define TYPE_PIPE	1
 #define TYPE_BREAK	2
 
-#ifdef TEST_SH
-# define TEST		1
-#else
-# define TEST		0
-#endif
-
 typedef struct	s_list
 {
 	char			**args;
@@ -229,14 +223,12 @@ int		exec_cmd(t_list *cmd, char **env)
 
 int		exec_cmds(t_list **cmds, char **env)
 {
-//	t_list	*curr;
 	int		res;
 
 	res = EXIT_SUCCESS;
 	list_first(cmds);
 	while (*cmds)
 	{
-	//	curr = *cmds;
 		res = EXIT_SUCCESS;
 		if (!strcmp("cd", (*cmds)->args[0]))
 		{
@@ -273,8 +265,6 @@ int		main(int argc, char **argv, char **env)
 	if (cmds)
 		res = exec_cmds(&cmds, env);
 	list_clean(&cmds);
-	if (TEST)
-		while (1);
 	return (res);
 }
 	
