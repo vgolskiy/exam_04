@@ -117,7 +117,8 @@ int		list_push(t_list **list, char *arg)
 {
 	t_list	*new;
 
-	new = list_new();
+	if (!(new = list_new())) 
+                return (EXIT_FAILURE);
 	if (*list)
 	{
 		(*list)->next = new;
